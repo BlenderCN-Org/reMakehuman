@@ -47,6 +47,7 @@ from getpath import getSysDataPath, canonicalPath
 import log
 import material
 import animation
+import random
 
 from makehuman import getBasemeshVersion, getShortVersion, getVersionStr, getVersion
 
@@ -993,7 +994,9 @@ class Human(guicommon.Object, animation.AnimatedMesh):
         are affected by the change in the specified modifier. (reverse 
         dependency mapping)
         """
+
         result = self._modifier_dependencyMapping.get(modifier.macroVariable, [])
+
         if filter is None:
             return result
         else:
@@ -1186,15 +1189,16 @@ class Human(guicommon.Object, animation.AnimatedMesh):
 
         # TODO emit event?
 
+
     def setDefaultValues(self):
-        self.age = 0.5
-        self.gender = 0.5
-        self.weight = 0.5
-        self.muscle = 0.5
-        self.height = 0.5
-        self.breastSize = 0.5
-        self.breastFirmness = 0.5
-        self.bodyProportions = 0.5
+        self.age = random.randint(0, 1)
+        self.gender = random.randint(0, 1)
+        self.weight = random.randint(0, 1)
+        self.muscle = random.randint(0, 1)
+        self.height = random.randint(0, 1)
+        self.breastSize = random.randint(0, 1)
+        self.breastFirmness = random.randint(0, 1)
+        self.bodyProportions = random.randint(0, 1)
 
         self._setGenderVals()
         self._setAgeVals()
@@ -1205,9 +1209,9 @@ class Human(guicommon.Object, animation.AnimatedMesh):
         self._setBreastFirmnessVals()
         self._setBodyProportionVals()
 
-        self.caucasianVal = 1.0/3
-        self.asianVal = 1.0/3
-        self.africanVal = 1.0/3
+        self.caucasianVal = 1/3
+        self.asianVal = 1/3
+        self.africanVal = 1/3
 
     def resetMeshValues(self):
         self.setSubdivided(False, update=False)
